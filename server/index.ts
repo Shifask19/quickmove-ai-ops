@@ -1,5 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { createSchema } from './schema.js';
 import { seedDatabase } from './seed.js';
 import { customersRouter } from './routes/customers.js';
@@ -9,11 +11,15 @@ import { vendorsRouter } from './routes/vendors.js';
 import { utilitiesRouter } from './routes/utilities.js';
 import { miscRouter } from './routes/misc.js';
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const PORT = process.env.PORT || 3001;
+const isProd = process.env.NODE_ENV === 'production';
 
-// Middleware — allow any localhost port (dev) or env-specified origin
-const allowedOrigin = process.env.CORS_ORIGIN || /^http:\/\/localhost:\d+$/;
+// Middleware — allow any localhost in dev, locked in prod
+const allowedOrigin = isProd
+  ? process.env.CORS_ORIGIN || true
+  : /^http:\/\/localhost:\d+$/;
 app.use(cors({ origin: allowedOrigin, credentials: true }));
 app.use(express.json());
 
@@ -50,6 +56,15 @@ app.use((err: Error, _req: express.Request, res: express.Response, _next: expres
 // Init DB then start
 createSchema();
 seedDatabase();
+
+// Serve built frontend in production
+if (isProd) {
+  const distPath = path.join(__dirname, '../dist');
+  app.use(express.static(distPath));
+  app.get('*', (_req, res) => {
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`\n🚀 QuickMove API running at http://localhost:${PORT}`);
