@@ -11,7 +11,11 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    strictPort: false, // if 5173 taken, try next port
+    strictPort: false,
+    hmr: {
+      protocol: 'ws',
+      host: 'localhost',
+    },
     proxy: {
       '/api': {
         target: 'http://localhost:3001',
