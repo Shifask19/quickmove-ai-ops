@@ -1,25 +1,30 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard, Users, Route, Building2, Truck, Zap, MapPin,
-  CheckSquare, Bell, BarChart3, Activity, Settings, X, TrendingUp
+  CheckSquare, Bell, BarChart3, Activity, Settings, X, TrendingUp,
+  MessageSquare, Package, BookOpen, AlertOctagon
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { useStore } from '../../store/useStore';
 
 const navItems = [
-  { label: 'Dashboard',       path: '/',                icon: LayoutDashboard },
-  { label: 'Customers',       path: '/customers',       icon: Users },
-  { label: 'Relocations',     path: '/relocations',     icon: Route },
-  { label: 'Properties',      path: '/properties',      icon: Building2 },
-  { label: 'Vendors & Movers',path: '/vendors',         icon: Truck },
-  { label: 'Utility Setup',   path: '/utilities',       icon: Zap },
-  { label: 'Address Change',  path: '/address-change',  icon: MapPin },
-  { label: 'Tasks',           path: '/tasks',           icon: CheckSquare },
-  { label: 'Notifications',   path: '/notifications',   icon: Bell },
-  { label: 'Reports',         path: '/reports',         icon: BarChart3 },
-  { label: 'Analytics',       path: '/analytics',       icon: TrendingUp },
-  { label: 'Activity',        path: '/activity',        icon: Activity },
-  { label: 'Settings',        path: '/settings',        icon: Settings },
+  { label: 'Dashboard',        path: '/',                icon: LayoutDashboard },
+  { label: 'Intake Parser',    path: '/intake',          icon: MessageSquare },
+  { label: 'Customers',        path: '/customers',       icon: Users },
+  { label: 'Relocations',      path: '/relocations',     icon: Route },
+  { label: 'Properties',       path: '/properties',      icon: Building2 },
+  { label: 'Vendors & Movers', path: '/vendors',         icon: Truck },
+  { label: 'Move Day',         path: '/move-day',        icon: Package },
+  { label: 'Utility Setup',    path: '/utilities',       icon: Zap },
+  { label: 'Address Change',   path: '/address-change',  icon: MapPin },
+  { label: 'Tasks',            path: '/tasks',           icon: CheckSquare },
+  { label: 'Escalations',      path: '/escalations',     icon: AlertOctagon },
+  { label: 'Notifications',    path: '/notifications',   icon: Bell },
+  { label: 'City Playbooks',   path: '/playbooks',       icon: BookOpen },
+  { label: 'Reports',          path: '/reports',         icon: BarChart3 },
+  { label: 'Analytics',        path: '/analytics',       icon: TrendingUp },
+  { label: 'Activity',         path: '/activity',        icon: Activity },
+  { label: 'Settings',         path: '/settings',        icon: Settings },
 ];
 
 export function Sidebar() {

@@ -15,6 +15,10 @@ import { Reports } from './pages/Reports';
 import { Analytics } from './pages/Analytics';
 import { Activity } from './pages/Activity';
 import { Settings } from './pages/Settings';
+import { Intake } from './pages/Intake';
+import { MoveDay } from './pages/MoveDay';
+import { CityPlaybooks } from './pages/CityPlaybooks';
+import { Escalations } from './pages/Escalations';
 
 export default function App() {
   return (
@@ -22,16 +26,20 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Dashboard />} />
+          <Route path="/intake" element={<Intake />} />
           <Route path="/customers" element={<Customers />} />
           <Route path="/relocations" element={<Relocations />} />
           <Route path="/relocations/new" element={<NewRelocation />} />
           <Route path="/relocations/:id" element={<RelocationDetail />} />
           <Route path="/properties" element={<Properties />} />
           <Route path="/vendors" element={<Vendors />} />
+          <Route path="/move-day" element={<MoveDay />} />
           <Route path="/utilities" element={<Utilities />} />
           <Route path="/address-change" element={<AddressChange />} />
           <Route path="/tasks" element={<Tasks />} />
+          <Route path="/escalations" element={<Escalations />} />
           <Route path="/notifications" element={<Notifications />} />
+          <Route path="/playbooks" element={<CityPlaybooks />} />
           <Route path="/reports" element={<Reports />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/activity" element={<Activity />} />

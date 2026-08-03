@@ -246,7 +246,7 @@ export function Dashboard() {
         </Card>
 
         {/* Daily Workload */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <Card>
             <div className="flex items-center gap-2 mb-3"><Users size={15} className="text-indigo-500" /><h3 className="font-semibold text-slate-900 text-sm">Total Customers</h3></div>
             <p className="text-3xl font-bold text-indigo-600">8</p>
@@ -262,6 +262,26 @@ export function Dashboard() {
             <p className="text-3xl font-bold text-amber-600">4</p>
             <p className="text-xs text-slate-500 mt-1">Across 2 active relocations</p>
           </Card>
+          <Card hover onClick={() => navigate('/escalations')}>
+            <div className="flex items-center gap-2 mb-3"><AlertTriangle size={15} className="text-red-500" /><h3 className="font-semibold text-slate-900 text-sm">Open Escalations</h3></div>
+            <p className="text-3xl font-bold text-red-600">2</p>
+            <p className="text-xs text-slate-500 mt-1">1 critical, 1 high severity</p>
+          </Card>
+        </div>
+
+        {/* Quick access to new features */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {[
+            { label: '💬 Intake Parser', desc: 'Convert WhatsApp → record', path: '/intake', color: 'bg-violet-50 border-violet-200' },
+            { label: '🚚 Move Day', desc: 'Live move coordination', path: '/move-day', color: 'bg-amber-50 border-amber-200' },
+            { label: '🏙️ City Playbooks', desc: 'Per-city vendor & rules', path: '/playbooks', color: 'bg-teal-50 border-teal-200' },
+            { label: '🚨 Escalations', desc: 'Exception management', path: '/escalations', color: 'bg-red-50 border-red-200' },
+          ].map(q => (
+            <Card key={q.path} hover onClick={() => navigate(q.path)} className={`${q.color}`} padding="sm">
+              <p className="font-semibold text-slate-800 text-sm">{q.label}</p>
+              <p className="text-xs text-slate-500 mt-0.5">{q.desc}</p>
+            </Card>
+          ))}
         </div>
 
       </div>
