@@ -9,6 +9,16 @@ export default defineConfig({
       '@': `${import.meta.dirname}/src`,
     },
   },
+  server: {
+    port: 5173,
+    strictPort: false, // if 5173 taken, try next port
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      },
+    },
+  },
   build: {
     chunkSizeWarningLimit: 1000,
   },

@@ -12,8 +12,9 @@ import { miscRouter } from './routes/misc.js';
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Middleware
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+// Middleware — allow any localhost port (dev) or env-specified origin
+const allowedOrigin = process.env.CORS_ORIGIN || /^http:\/\/localhost:\d+$/;
+app.use(cors({ origin: allowedOrigin, credentials: true }));
 app.use(express.json());
 
 // Request logger

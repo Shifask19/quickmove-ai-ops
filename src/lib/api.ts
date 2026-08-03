@@ -1,5 +1,7 @@
 // Central API client — all fetch calls go through here
-const BASE = import.meta.env.VITE_API_URL || 'http://localhost:3001/api';
+// In dev: Vite proxies /api → http://localhost:3001/api (no CORS)
+// In prod: /api is served by the same origin
+const BASE = '/api';
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {
