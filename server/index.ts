@@ -42,7 +42,21 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString(), service: 'QuickMove API' });
 });
 
-// 404 handler
+// Init DB
+createSchema();
+seedDatabase();
+
+// Serve built frontend in production (must be before 404 handler)
+if (isProd) {
+  const distPath = path.join(__dirname, '../dist');
+  app.use(express.static(distPath));
+  // Express 5 requires explicit wildcard syntax
+  app.get('/{*splat}', (_req, res) => {
+    res.sendFile(path.join(distPath, 'index.html'));
+  });
+}
+
+// 404 handler (API routes only)
 app.use((_req, res) => {
   res.status(404).json({ error: 'Endpoint not found' });
 });
@@ -52,19 +66,6 @@ app.use((err: Error, _req: express.Request, res: express.Response, _next: expres
   console.error('Unhandled error:', err.message);
   res.status(500).json({ error: 'Internal server error' });
 });
-
-// Init DB then start
-createSchema();
-seedDatabase();
-
-// Serve built frontend in production
-if (isProd) {
-  const distPath = path.join(__dirname, '../dist');
-  app.use(express.static(distPath));
-  app.get('*', (_req, res) => {
-    res.sendFile(path.join(distPath, 'index.html'));
-  });
-}
 
 app.listen(PORT, () => {
   console.log(`\n🚀 QuickMove API running at http://localhost:${PORT}`);
