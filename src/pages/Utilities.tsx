@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Zap } from 'lucide-react';
 import { TopNav } from '../components/layout/TopNav';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AlertOctagon, Plus, Search, Clock, CheckCircle } from 'lucide-react';
+import { AlertOctagon, Plus, Search, CheckCircle } from 'lucide-react';
 import { TopNav } from '../components/layout/TopNav';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
@@ -8,7 +8,7 @@ import { Modal } from '../components/ui/Modal';
 import { Input, Select, Textarea } from '../components/ui/Input';
 import { Avatar } from '../components/ui/Avatar';
 import { useStore } from '../store/useStore';
-import { formatDate, formatDateTime } from '../lib/utils';
+import { formatDateTime } from '../lib/utils';
 import { toast } from 'sonner';
 
 type EscalationStatus = 'open' | 'in_progress' | 'resolved' | 'escalated';

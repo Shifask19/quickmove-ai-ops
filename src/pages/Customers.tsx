@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Search, Building2, User, Phone, Mail } from 'lucide-react';
+import { Plus, Search, Phone, Mail } from 'lucide-react';
 import { TopNav } from '../components/layout/TopNav';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
@@ -122,7 +122,6 @@ export function Customers() {
                         label={customer.type === 'corporate' ? 'Corporate' : 'Individual'}
                         color={customer.type === 'corporate' ? 'text-indigo-700' : 'text-slate-600'}
                         bg={customer.type === 'corporate' ? 'bg-indigo-100' : 'bg-slate-100'}
-                        icon={customer.type === 'corporate' ? <Building2 size={10} /> : <User size={10} />}
                       />
                     </div>
                     {customer.corporateClientName && (

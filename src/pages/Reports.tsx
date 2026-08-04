@@ -97,7 +97,7 @@ export function Reports() {
             <CardHeader><CardTitle>Relocations by Stage</CardTitle></CardHeader>
             <ResponsiveContainer width="100%" height={220}>
               <PieChart>
-                <Pie data={byStatus} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} label={({ name, value }) => `${value}`}>
+                <Pie data={byStatus} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={80} label={({ value }) => `${value}`}>
                   {byStatus.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
                 </Pie>
                 <Tooltip />

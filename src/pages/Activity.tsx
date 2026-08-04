@@ -75,7 +75,7 @@ export function Activity() {
           <div className="relative">
             <div className="absolute left-6 top-0 bottom-0 w-px bg-slate-200" />
             <div className="space-y-4">
-              {filtered.map((event, idx) => {
+              {filtered.map((event) => {
                 const relo = relocations.find(r => r.id === event.relocationId);
                 return (
                   <div key={event.id} className="flex gap-4 relative">

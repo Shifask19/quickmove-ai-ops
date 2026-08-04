@@ -2,10 +2,9 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { TopNav } from '../components/layout/TopNav';
 import { Card, CardHeader, CardTitle } from '../components/ui/Card';
 import { useStore } from '../store/useStore';
-import { relocationStatusMap } from '../lib/utils';
 
 export function Analytics() {
-  const { relocations, tasks, customers } = useStore();
+  const { relocations, customers } = useStore();
 
   // Pipeline velocity - days in each stage (mocked enriched data)
   const velocityData = [
@@ -30,7 +29,6 @@ export function Analytics() {
   ];
 
   // Customer type breakdown
-  const individualCount = customers.filter(c => c.type === 'individual').length;
   const corporateCount = customers.filter(c => c.type === 'corporate').length;
 
   // Coordinator workload
